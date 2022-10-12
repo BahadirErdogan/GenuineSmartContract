@@ -61,11 +61,7 @@ contract MultiSignature {
         
     }
    
-    //Function return an array (all wallet owners)
-    function getWalletOners() public view returns(address[] memory) {
-        
-        return walletowners;
-    }
+
     
     //Function add an owner(address) to walletowners array
     function addWalletOwner(address owner) public onlyowners {
@@ -237,35 +233,42 @@ contract MultiSignature {
         transferRequests[id] = transferRequests[transferRequests.length - 1];
         transferRequests.pop();
     }
-    
-    //Function return approvals of message.sender for a given transfer id
-    function getApprovals(uint id) public view returns(bool) {
-        
-        return approvals[msg.sender][id];
-    }
-    
-    //Function return an array (Transfer Requests)
-    function getTransferRequests() public view returns(Transfer[] memory) {
-        
-        return transferRequests;
-    }
-    
-    //balance mapping allows us to keep track of the distrubitions of funds among all of the owners in the wallet
-    function getBalance() public view returns(uint) {
-        
-        return balance[msg.sender];
-    }
+
     
     //Function returns limit
     function getApprovalLimit() public view returns (uint) {
         
         return limit;
     }
+
+    //Function return approvals of message.sender for a given transfer id
+    function getApprovals(uint id) public view returns(bool) {
+        
+        return approvals[msg.sender][id];
+    }
+
+    //balance mapping allows us to keep track of the distrubitions of funds among all of the owners in the wallet
+    function getBalance() public view returns(uint) {
+        
+        return balance[msg.sender];
+    }
     
     //Contract balance
      function getContractBalance() public view returns(uint) {
         
         return address(this).balance;
+    }
+
+    //Function return an array (all wallet owners)
+    function getWalletOwners() public view returns(address[] memory) {
+        
+        return walletowners;
+    }
+
+    //Function return an array (Transfer Requests)
+    function getTransferRequests() public view returns(Transfer[] memory) {
+        
+        return transferRequests;
     }
 
 }
